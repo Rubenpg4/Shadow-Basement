@@ -1,4 +1,4 @@
-<![CDATA[<div align="center">
+<div align="center">
 
 # 🏚️ SHADOW BASEMENT
 
@@ -476,4 +476,4 @@ hdr-display-enabled=0          # HDR deshabilitado (optimización)
 **[⬆ Volver arriba](#️-shadow-basement)**
 
 </div>
-]]>
+
