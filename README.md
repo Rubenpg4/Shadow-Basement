@@ -2,7 +2,7 @@
 
 # 🏚️ SHADOW BASEMENT
 
-### *Un Videojuego de Terror/Exploración 3D desarrollado en Unity*
+### *Un Videojuego de Puzzle 3D desarrollado en Unity*
 
 [![Unity](https://img.shields.io/badge/Unity-2022.3.16f1-black?style=for-the-badge&logo=unity&logoColor=white)](https://unity.com/)
 [![Platform](https://img.shields.io/badge/Platform-Windows_x64-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://www.microsoft.com/windows)
@@ -12,7 +12,7 @@
 
 <br>
 
-*"Adéntrate en las profundidades de un sótano donde la oscuridad esconde más de lo que imaginas..."*
+*"Resuelve puzzles en un sótano misterioso con niveles expandibles y libertad de exploración..."*
 
 <br>
 
@@ -29,20 +29,16 @@
 
 - [🎯 El Problema que Resuelve](#-el-problema-que-resuelve)
 - [✨ Características Principales](#-características-principales)
-- [📦 Requisitos del Sistema](#-requisitos-del-sistema)
 - [🚀 Inicio Rápido](#-inicio-rápido)
-- [🏗️ Arquitectura Técnica](#️-arquitectura-técnica)
-- [🎨 Stack Tecnológico](#-stack-tecnológico)
 - [📁 Estructura del Proyecto](#-estructura-del-proyecto)
 - [🎮 Mecánicas de Juego](#-mecánicas-de-juego)
-- [⚡ Optimizaciones de Rendimiento](#-optimizaciones-de-rendimiento)
 - [📚 Documentación Adicional](#-documentación-adicional)
 
 ---
 
 ## 🎯 El Problema que Resuelve
 
-**Shadow Basement** no es solo un videojuego de terror - es una **experiencia inmersiva 3D** que combina:
+**Shadow Basement** es un **videojuego de Puzzle 3D** con sistema de niveles expandibles que combina:
 
 | Aspecto | Solución Implementada |
 |---------|----------------------|
@@ -60,9 +56,9 @@
 ## ✨ Características Principales
 
 ### 🎮 Gameplay
-- 🔦 **Exploración en Primera/Tercera Persona** - Navega por un sótano lleno de misterios
-- 🌑 **Atmósfera de Terror** - Iluminación y audio diseñados para generar tensión
-- 🧩 **Múltiples Niveles** - 4 escenarios únicos con progresión de dificultad
+- 🧩 **Puzzles Desafiantes** - Resuelve acertijos y desafíos en cada nivel
+- 🔦 **Exploración Libre** - Navega por un sótano lleno de misterios
+- � **Niveles Expandibles** - Sistema modular que permite añadir nuevos niveles con libertad
 - 🎬 **Secuencias Cinemáticas** - Momentos narrativos con cámaras dinámicas
 
 ### 🛠️ Técnicas
@@ -70,31 +66,6 @@
 - 🎥 **Cinemachine Integration** - Sistema de cámaras profesional
 - 📝 **Visual Scripting** - Lógica de juego accesible y mantenible
 - 🚀 **Burst Compiler** - Código nativo de alto rendimiento
-
----
-
-## 📦 Requisitos del Sistema
-
-### Mínimos
-| Componente | Especificación |
-|------------|----------------|
-| **SO** | Windows 10 (64-bit) |
-| **Procesador** | Intel Core i3 / AMD Ryzen 3 (SSE2 requerido) |
-| **RAM** | 4 GB |
-| **GPU** | DirectX 11 compatible |
-| **Almacenamiento** | 150 MB disponibles |
-
-### Recomendados
-| Componente | Especificación |
-|------------|----------------|
-| **SO** | Windows 10/11 (64-bit) |
-| **Procesador** | Intel Core i5 / AMD Ryzen 5 (AVX2 recomendado) |
-| **RAM** | 8 GB |
-| **GPU** | NVIDIA GTX 1060 / AMD RX 580 o superior |
-| **Almacenamiento** | 200 MB disponibles (SSD preferido) |
-
-> [!IMPORTANT]
-> El juego está optimizado para procesadores con soporte **AVX2** para máximo rendimiento. Procesadores con solo SSE2 funcionarán pero con rendimiento reducido.
 
 ---
 
@@ -140,133 +111,6 @@ cd "Shadow Basement"
 
 > [!TIP]
 > Si el juego no inicia, asegúrate de que todos los archivos (`UnityPlayer.dll`, `UnityCrashHandler64.exe`) estén en el mismo directorio que el ejecutable.
-
----
-
-## 🏗️ Arquitectura Técnica
-
-### Flujo de Inicialización del Motor
-
-```mermaid
-flowchart TD
-    subgraph Inicio["🚀 Boot Sequence"]
-        A[Shadow Basement.exe] --> B[Mono Runtime]
-        B --> C[UnityPlayer.dll]
-    end
-    
-    subgraph Core["⚙️ Core Systems"]
-        C --> D[Runtime Initialize]
-        D --> E[Cinemachine Init]
-        D --> F[Input System Init]
-        D --> G[URP Init]
-        D --> H[Visual Scripting Init]
-    end
-    
-    subgraph Game["🎮 Game Loop"]
-        E & F & G & H --> I[Game Manager]
-        I --> J[Level 0: Menu/Intro]
-        J --> K[Level 1: Gameplay]
-        K --> L[Level 2: Gameplay]
-        L --> M[Level 3: Final]
-    end
-    
-    style Inicio fill:#1a1a2e,stroke:#16213e,color:#fff
-    style Core fill:#16213e,stroke:#0f3460,color:#fff
-    style Game fill:#0f3460,stroke:#e94560,color:#fff
-```
-
-### Módulos de Inicialización en Runtime
-
-El sistema utiliza un conjunto de módulos que se inicializan automáticamente:
-
-| Módulo | Namespace | Propósito |
-|--------|-----------|-----------|
-| `CinemachineCore` | `Cinemachine` | Sistema de cámaras virtuales |
-| `CinemachineStoryboard` | `Cinemachine` | Overlays visuales para cutscenes |
-| `UpdateTracker` | `Cinemachine` | Sincronización de actualizaciones |
-| `CinemachineImpulseManager` | `Cinemachine` | Efectos de sacudida de cámara |
-| `InputSystem` | `UnityEngine.InputSystem` | Sistema de entrada moderno |
-| `XRSystem` | `UnityEngine.Experimental.Rendering` | Soporte para XR/VR (preparado) |
-| `DebugUpdater` | `UnityEngine.Rendering` | Herramientas de debug en build |
-
----
-
-## 🎨 Stack Tecnológico
-
-### Arquitectura por Capas
-
-```mermaid
-graph TB
-    subgraph Presentation["🎨 Capa de Presentación"]
-        UI[TextMeshPro UI]
-        URP[Universal Render Pipeline]
-        CAM[Cinemachine Cameras]
-    end
-    
-    subgraph Logic["🧠 Capa de Lógica"]
-        VS[Visual Scripting]
-        CS[Assembly-CSharp]
-        TL[Timeline Sequences]
-    end
-    
-    subgraph Core["⚡ Capa de Core"]
-        INPUT[Input System]
-        PHYSICS[Physics Module]
-        AUDIO[Audio Module]
-    end
-    
-    subgraph Engine["🔧 Capa de Motor"]
-        MONO[Mono Runtime]
-        BURST[Burst Compiler]
-        MATH[Unity.Mathematics]
-    end
-    
-    Presentation --> Logic
-    Logic --> Core
-    Core --> Engine
-    
-    style Presentation fill:#667eea,stroke:#764ba2,color:#fff
-    style Logic fill:#764ba2,stroke:#f093fb,color:#fff
-    style Core fill:#f093fb,stroke:#f5576c,color:#fff
-    style Engine fill:#f5576c,stroke:#4facfe,color:#fff
-```
-
-### Dependencias Principales
-
-<details>
-<summary><b>🎮 Core de Unity (68 módulos)</b></summary>
-
-| Categoría | Módulos |
-|-----------|---------|
-| **Renderizado** | `CoreModule`, `GIModule`, `UmbraModule`, `VFXModule` |
-| **Física** | `PhysicsModule`, `Physics2DModule`, `ClothModule`, `VehiclesModule` |
-| **Audio** | `AudioModule`, `DSPGraphModule` |
-| **Input** | `InputModule`, `InputLegacyModule` |
-| **UI** | `UIModule`, `UIElementsModule`, `IMGUIModule` |
-| **Animación** | `AnimationModule`, `DirectorModule` |
-| **Terrain** | `TerrainModule`, `TerrainPhysicsModule` |
-| **Networking** | `UnityWebRequestModule`, `TLSModule` |
-
-</details>
-
-<details>
-<summary><b>📦 Paquetes de Unity (26 paquetes)</b></summary>
-
-| Paquete | Versión | Propósito | Tamaño |
-|---------|---------|-----------|--------|
-| `Unity.RenderPipelines.Universal.Runtime` | - | Pipeline de renderizado escalable | 752 KB |
-| `Unity.RenderPipelines.Core.Runtime` | - | Core del sistema de renderizado | 531 KB |
-| `Unity.InputSystem` | - | Sistema de input moderno y flexible | 1.1 MB |
-| `Cinemachine` | - | Cámaras cinematográficas inteligentes | 310 KB |
-| `Unity.VisualScripting.Core` | - | Programación visual para gameplay | 626 KB |
-| `Unity.VisualScripting.Flow` | - | Grafos de flujo visual | 404 KB |
-| `Unity.ProBuilder` | - | Modelado 3D in-engine | 402 KB |
-| `Unity.TextMeshPro` | - | Renderizado de texto avanzado | 380 KB |
-| `Unity.Burst` | - | Compilación a código nativo | 316 KB |
-| `Unity.Timeline` | - | Secuencias cinemáticas | 127 KB |
-| `Unity.Mathematics` | - | Matemáticas de alto rendimiento | 741 KB |
-
-</details>
 
 ---
 
@@ -349,49 +193,6 @@ El juego implementa un sofisticado sistema de cámaras con:
 | **Storyboard** | Overlays visuales para cutscenes |
 | **Update Tracker** | Sincronización precisa con el game loop |
 | **Volume Settings** | Integración con post-processing URP |
-
----
-
-## ⚡ Optimizaciones de Rendimiento
-
-### Compilación Burst
-
-El proyecto utiliza el **Burst Compiler** para generar código nativo optimizado:
-
-```
-├── Target: AVX2 (primario) / SSE2 (fallback)
-├── Backend: burst-llvm-15
-├── Safety Checks: Deshabilitados en producción
-├── Float Mode: Fast (precisión optimizada)
-└── Meta-data: Generación mínima
-```
-
-### Jobs Compilados con Burst
-
-<details>
-<summary><b>Ver jobs optimizados del sistema de renderizado</b></summary>
-
-| Job | Descripción |
-|-----|-------------|
-| `DecalUpdateCachedSystem.UpdateTransformsJob` | Actualización paralela de transforms de decals |
-| `DecalCreateDrawCallSystem.DrawCallJob` | Generación optimizada de draw calls |
-| `ReflectionProbeMinMaxZJob` | Cálculo de profundidad para reflection probes |
-| `LightMinMaxZJob` | Cálculo de depth range para luces |
-| `ZBinningJob` | Binning de profundidad para forward+ |
-| `TileRangeExpansionJob` | Expansión de tiles para culling |
-| `TilingJob` | Tiled deferred/forward rendering |
-
-</details>
-
-### Configuración Gráfica
-
-```ini
-# boot.config
-gfx-enable-gfx-jobs=1          # Jobs de gráficos habilitados
-gfx-enable-native-gfx-jobs=1   # Jobs nativos para máximo rendimiento
-gc-max-time-slice=3            # GC limitado a 3ms por frame
-hdr-display-enabled=0          # HDR deshabilitado (optimización)
-```
 
 ---
 
